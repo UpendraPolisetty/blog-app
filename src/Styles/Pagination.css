@@ -1,0 +1,22 @@
+.pagination {
+    margin: 2rem 0;
+    border-top: 1px solid black;
+    padding: 3rem;
+}
+
+.pagination-count span{
+    color: rgb(224, 154, 24);
+    border: 1px solid;
+    border-right: 0;
+    padding: 0.5rem 0.7rem;
+    display: inline-block;
+    cursor: pointer;
+}
+.activePage {
+    background-color: rgb(224, 154, 24);
+    color: rgb(0, 0, 0) !important;
+}
+
+.activePage:hover {
+    opacity: 0.8;
+}

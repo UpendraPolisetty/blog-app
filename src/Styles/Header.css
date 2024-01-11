@@ -1,0 +1,36 @@
+.header_div{
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    /* background: linear-gradient(to right ,rgb(255, 255, 255) , rgb(105, 189, 210)); */
+    background: linear-gradient(to right ,rgb(255, 255, 255) , rgb(224, 154, 24));
+    position: sticky;
+    z-index: 100;
+}
+.header_left a{
+    display: flex;
+    align-items: center;
+}
+.header_left a  {
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;  
+    color: black;
+}
+.header_right ul{
+    display: flex;
+    align-items: center;
+}
+.header_right ul li {
+    margin-right:2rem ;
+}
+.header_right ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+.header_right ul li a:hover {
+    border-bottom: 1px solid black;
+}

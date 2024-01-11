@@ -1,0 +1,36 @@
+img{
+    width: 50px;
+    border-radius: 50%;
+}
+
+.flex{
+    display: flex;
+}
+.between {
+    justify-content: space-between;
+}
+.anchor {
+    text-decoration: none;
+    color: black;
+}
+.post_header{
+    margin-top: 1rem;
+    padding: 1rem 0.5rem;
+}
+.post-details{
+    margin-left: 1rem;
+}
+.post-author{
+    font-size: 1rem ;
+}
+
+.like-btn{
+    border: 1px solid black;
+    padding: 10px ;
+    border-radius: 6px ;
+    cursor: pointer;
+}
+.like-btn :hover {
+    background: rgb(224, 154, 24);
+}
+
