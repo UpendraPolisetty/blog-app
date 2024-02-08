@@ -34,3 +34,11 @@
 .header_right ul li a:hover {
     border-bottom: 1px solid black;
 }
+.header_right ul li button {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+.header_right ul li button:hover {
+    border-bottom: 1px solid black;
+}

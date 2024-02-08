@@ -1,8 +1,10 @@
 import React from 'react';
 import "../Styles/Header.css"
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
 
 export const Header = ({isLoggedIn,user}) => {
+  
   return (
     <div>
       <section className='header_div'>
@@ -13,7 +15,7 @@ export const Header = ({isLoggedIn,user}) => {
           </Link>
         </div>
         <nav className='header_right'>
-            { isLoggedIn ? <AuthHeader /> : <NonAuthHeader />}
+            { isLoggedIn ? <AuthHeader user = {user} /> : <NonAuthHeader />}
           </nav>
       </section>
     </div>
@@ -35,20 +37,30 @@ const NonAuthHeader = () => {
   </ul>
   )
 };
-const AuthHeader = () => {
+const AuthHeader = ({user}) => {
+  let Navigate = useNavigate();
+  let userLogout = () => {
+    localStorage.removeItem('TokenKey');
+    window.location.reload();
+    Navigate('/')
+    
+  }
   return (
   <ul>
     <li>
       <Link to="/">Home</Link>
     </li>
     <li>
-      <Link to="/signup">New Article</Link>
+      <Link to="/newArticle">New Article</Link>
     </li>
     <li>
-      <Link to="/">Settings</Link>
+      <Link to="/settings">Settings</Link>
     </li>
     <li>
-      <Link to="/">Profile</Link>
+      <Link to="/profile">Profile</Link>
+    </li>
+    <li>
+      <button onClick={ userLogout}>Logout</button>
     </li>
   </ul>
   )

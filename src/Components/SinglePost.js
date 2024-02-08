@@ -6,7 +6,7 @@ import Loader from './Loader';
 import "../Styles/SinglePost.css";
 
 
-export const SinglePost = () => {
+export const SinglePost = ({user}) => {
 
   let [state , setState] = useState({
     article : null,
@@ -57,13 +57,17 @@ export const SinglePost = () => {
       </div>
       <hr/>
       <footer>
-        <div className='sign'>
+        {
+          user === null ? (
+            <div className='sign'>
           <p className=''>
             <Link className='links' to="/login">Sign in</Link>
             &nbsp; or &nbsp;
             <Link className='links' to="/signup">Sign Up </Link> to add comments on this article
           </p>
         </div>
+          ) : ('')
+        }
       </footer>
     </article>
   )

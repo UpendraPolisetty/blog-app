@@ -29,6 +29,7 @@ export const Signup = ({updateUser}) => {
       errors: { ...errors },
     }));
   };
+  
 
   let Navigate = useNavigate()
   let handleSubmit = (e) => {

@@ -15,7 +15,6 @@ export const Login = ({updateUser}) => {
       password  : '',
     }
   });
-  console.log(state);
   let handleChange = (e) => {
     let {name ,value } = e.target;
     let errors = {...state.errors}
@@ -49,6 +48,7 @@ let Navigate = useNavigate();
       .then(({ user }) => {
         console.log(user);
         updateUser(user)
+        localStorage.setItem('TokenKey', user.token);
         Navigate('/')
       })
       .catch((errors) => {

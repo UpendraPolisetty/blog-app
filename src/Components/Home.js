@@ -66,7 +66,7 @@ export const Home = () => {
   };
 
   let { articles, error, activeTab, artclesCount, articlesPerPage, activePage } = state;
-
+console.log(state);
   
 
   return (

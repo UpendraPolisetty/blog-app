@@ -1,0 +1,77 @@
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f3f3;
+    background: linear-gradient(to right ,rgb(255, 255, 255) , rgb(224, 154, 24));
+    padding: 2rem 0 1rem;
+    /* text-align: center; */
+}
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+}
+.name {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    line-height: 1.1;
+    color: inherit;
+}
+.bio{
+    margin: 0 auto 0.5rem;
+    color: #aaa;
+    max-width: 450px;
+    font-weight: 300;
+}
+.edit-btn {
+    color: #3f3d3d;
+    border: 1px solid #3f3d3d;
+    padding: 0.25rem 0.5rem;
+    font-size: .875rem;
+    border-radius: 0.2rem;
+    background-image: none;
+    background-color: transparent;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+.article-info{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 2rem;
+}
+.head_info{
+    display: flex;
+}
+.head_info li{
+    margin-left: 20px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    font-weight: 600;
+}
+.article-preview{
+    margin-left: 20px;
+}
+
+@media (min-width: 1200px){
+    .article-info {
+        max-width: 1140px;
+    }
+
+}

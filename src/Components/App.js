@@ -29,30 +29,41 @@ export const App = () => {
       user : user,
       isVerfying : false,
     })
-    localStorage.setItem(localStorageKey ,user.token)
+    
   }
 
   useEffect(() => {
-    let key = localStorage[localStorageKey]
-    if(key){
-      fetch(userVerifyUrl,{
-        method: "GET",
-        headers: {
-          "Authorization": `Token ${key}`,
-        }
-      }).then(res =>{
-        if (!res.ok) {
-          return res.json().then(({ errors }) => {
-            return Promise.reject(errors)
+    let key = localStorage[localStorageKey];
+  
+    const fetchUser = async () => {
+      try {
+        if (key) {
+          const res = await fetch(userVerifyUrl, {
+            method: "GET",
+            headers: {
+              "Authorization": `${key}`,
+            },
           });
-          // throw new Error("Login is not successful");
+  
+          if (!res.ok) {
+            const { errors } = await res.json();
+            throw new Error(errors);
+          }
+  
+          const { user } = await res.json();
+          console.log(user);
+          updateUser(user);
+        } else {
+          setState({ isLoggedIn: false, user: null, isVerifying: false });
         }
-        return res.json();
-      }).then(({user})=> updateUser(user)).catch((err) => { console.log(err);})
-    } else {
-      setState({ isVerfying : false });
-    }
-  } , [])
+      } catch (error) {
+        console.log(error);
+        setState({ isLoggedIn: false, user: null, isVerifying: false });
+      }
+    };
+  
+    fetchUser();
+  }, []);
   console.log(state.isLoggedIn , state.user);
   if(state.isVerfying) {
     return <FullPageLoader />
@@ -62,30 +73,30 @@ export const App = () => {
       <Router>
       <Header isLoggedIn = {state.isLoggedIn} user = {state.user} />
         {
-          state.isLoggedIn ? <AuthenticatedUser /> : < NonAuthenticatedUser updateUser = {updateUser} /> 
+          state.isLoggedIn ? <AuthenticatedUser  user = {state.user} /> : < NonAuthenticatedUser updateUser = {updateUser} user = {state.user} /> 
         }
       </Router>
     </div>
   )
 }
 
-function AuthenticatedUser () {
+function AuthenticatedUser ({user}) {
   return <Routes>
   <Route path='/' exact Component={Home}/>
-  <Route path='/newArticle' exact Component={NewArticle}/>
-  <Route path='/settings' exact Component={Settings}/>
-  <Route path='/profile' exact Component={Profile}/>
-  <Route path='/article/:slug'  Component={SinglePost}/>
+  <Route path='/newArticle' exact  element={<NewArticle user={user} />}/>
+  <Route path='/settings' exact  element={<Settings user={user} />}/>
+  <Route path='/profile' exact  element={<Profile user={user} />}/>
+  <Route path='/article/:slug'  element={<SinglePost user={user} />}/>
   <Route path='/*' exact Component={NoMatch}/>
 </Routes>
 }
 
-function NonAuthenticatedUser ({updateUser}) {
+function NonAuthenticatedUser ({updateUser,user}) {
   return <Routes>
-  <Route path='/' exact Component={Home}/>
+  <Route path='/' exact Component={Home}/> dfh
   <Route path='/signup' exact element={<Signup updateUser={updateUser}/>}/>
   <Route path='/login' exact element={<Login updateUser={updateUser}/>}/>
-  <Route path='/article/:slug'  Component={SinglePost}/>
+  <Route path='/article/:slug'  element={<SinglePost user={user} />}/>
   <Route path='/*' exact Component={NoMatch}/>
 </Routes>
 }

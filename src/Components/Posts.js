@@ -11,7 +11,7 @@ const Posts = (props) => {
   if (!props.articles) {
     return <Loader />;
   }
-  
+  console.log(props.articles);
 return (
     <>
       {props.articles.map(article => (
